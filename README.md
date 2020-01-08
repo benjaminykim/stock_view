@@ -3,6 +3,9 @@
 A simple, minimal website that allows users to search stock tickers to view financial data pertaining to their stock
 choice. This project was built using React and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Check out a live demo [here](https://benjaminykim.github.io/stock_view/).
+
+
 ## Available Scripts
 
 In the project directory, you can run:
