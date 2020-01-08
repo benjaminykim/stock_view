@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/benjaminykim/stock_view/static/css/main.d1b05096.chunk.css",
-    "main.js": "/benjaminykim/stock_view/static/js/main.dea1d576.chunk.js",
-    "main.js.map": "/benjaminykim/stock_view/static/js/main.dea1d576.chunk.js.map",
-    "runtime-main.js": "/benjaminykim/stock_view/static/js/runtime-main.c4b16b17.js",
-    "runtime-main.js.map": "/benjaminykim/stock_view/static/js/runtime-main.c4b16b17.js.map",
-    "static/js/2.8f225cdd.chunk.js": "/benjaminykim/stock_view/static/js/2.8f225cdd.chunk.js",
-    "static/js/2.8f225cdd.chunk.js.map": "/benjaminykim/stock_view/static/js/2.8f225cdd.chunk.js.map",
-    "index.html": "/benjaminykim/stock_view/index.html",
-    "precache-manifest.1d95769c9dd9b132a23748a702733747.js": "/benjaminykim/stock_view/precache-manifest.1d95769c9dd9b132a23748a702733747.js",
-    "service-worker.js": "/benjaminykim/stock_view/service-worker.js",
-    "static/css/main.d1b05096.chunk.css.map": "/benjaminykim/stock_view/static/css/main.d1b05096.chunk.css.map",
-    "static/js/2.8f225cdd.chunk.js.LICENSE": "/benjaminykim/stock_view/static/js/2.8f225cdd.chunk.js.LICENSE"
+    "main.css": "/stock_view/static/css/main.d1b05096.chunk.css",
+    "main.js": "/stock_view/static/js/main.a4676ef1.chunk.js",
+    "main.js.map": "/stock_view/static/js/main.a4676ef1.chunk.js.map",
+    "runtime-main.js": "/stock_view/static/js/runtime-main.7831caa7.js",
+    "runtime-main.js.map": "/stock_view/static/js/runtime-main.7831caa7.js.map",
+    "static/js/2.8f225cdd.chunk.js": "/stock_view/static/js/2.8f225cdd.chunk.js",
+    "static/js/2.8f225cdd.chunk.js.map": "/stock_view/static/js/2.8f225cdd.chunk.js.map",
+    "index.html": "/stock_view/index.html",
+    "precache-manifest.57405ec38b5ac956379822ad2c7e9d61.js": "/stock_view/precache-manifest.57405ec38b5ac956379822ad2c7e9d61.js",
+    "service-worker.js": "/stock_view/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/stock_view/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.8f225cdd.chunk.js.LICENSE": "/stock_view/static/js/2.8f225cdd.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.c4b16b17.js",
+    "static/js/runtime-main.7831caa7.js",
     "static/js/2.8f225cdd.chunk.js",
     "static/css/main.d1b05096.chunk.css",
-    "static/js/main.dea1d576.chunk.js"
+    "static/js/main.a4676ef1.chunk.js"
   ]
 }
