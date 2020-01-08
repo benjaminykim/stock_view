@@ -1,37 +1,16 @@
 import React from 'react';
 import './App.css';
-import { LineChart, Line, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts'
+import { LineChart, Line, CartesianGrid, Tooltip, XAxis, YAxis, Legend } from 'recharts'
 import Stock from './components/Stock'
-
-function generateChart(data) {
-  var index = 0;
-  data = data.map(item => {
-    index++;
-    return {"index":index, "value":item};
-  });
-  return (
-    <LineChart width={600} height={300} data={data}>
-      <Line type="monotone" dataKey="value" stroke="#8884d8" />
-      <CartesianGrid strokeDasharray="3 3"/>
-      <XAxis dataKey="index"/>
-      <YAxis dataKey="value"/>
-      <Tooltip/>
-    </LineChart>
-  )
-}
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      c: [],
-      h: [],
-      l: [],
-      o: [],
-      s: [],
-      t: [],
-      v: [],
+      data: null,
       stockName: null,
+      resolution: null,
+      isDataLoaded: false,
     }
   }
 
@@ -39,28 +18,77 @@ class App extends React.Component {
     return (
       <div className="Information">
         <Stock name={this.state.stockName}/>
-        {generateChart(this.state.c)}
+        {this.generateChart()}
       </div>
     )
   }
 
-  storeCandleData(data, name)
+  generateChart() {
+    if (this.state.isDataLoaded)
+    {
+      var data = this.generateData();
+      return (
+        <LineChart width={600} height={300} data={data}>
+          <CartesianGrid strokeDasharray="3 3"/>
+          <XAxis dataKey="time"/>
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="close" stroke="#8884d8" />
+          <Line type="monotone" dataKey="high" stroke="#34e5eb" />
+          <Line type="monotone" dataKey="low" stroke="#eb34a8" />
+          <Line type="monotone" dataKey="open" stroke="#59eb34" />
+        </LineChart>
+      )
+    }
+    return (
+      <LineChart width={600} height={300}>
+        <CartesianGrid strokeDasharray="3 3"/>
+        <XAxis />
+        <YAxis />
+        <Tooltip/>
+      </LineChart>
+    )
+  }
+
+  timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var year = a.getFullYear() % 100;
+    var month = a.getMonth() + 1;
+    var date = a.getDate();
+    var time = month + '/' + date + '/' + year;
+    return time;
+  }
+
+  generateData() {
+    var data = [];
+    for (var i=0; i < this.state.data.c.length; i++)
+    {
+      data.push({
+        'close': this.state.data.c[i],
+        'high': this.state.data.h[i],
+        'low': this.state.data.l[i],
+        'open': this.state.data.o[i],
+        'time': this.timeConverter(this.state.data.t[i]),
+        'volume': this.state.data.v[i]
+      });
+    }
+    return (data);
+  }
+
+  storeCandleData(data, name, resolution)
   {
     this.setState({
-      c:data.c,
-      h:data.h,
-      l:data.l,
-      o:data.o,
-      s:data.s,
-      t:data.t,
-      v:data.v,
+      data:data,
       stockName:name,
+      resolution:resolution,
+      isDataLoaded:true,
     });
   }
 
-  getStockCandle(name="AAPL")
+  getStockCandle(name="AAPL", count=200, resolution="D")
   {
-    let url = 'https://finnhub-realtime-stock-price.p.rapidapi.com/stock/candle?count=200&symbol=' +name + "&resolution=D";
+    let url = 'https://finnhub-realtime-stock-price.p.rapidapi.com/stock/candle?count=' + count + '&symbol=' +name + '&resolution=' + resolution;
     console.log(url);
     fetch(url, {
       "method": "GET",
@@ -70,7 +98,7 @@ class App extends React.Component {
       }
     })
     .then(response => response.json())
-    .then(data => this.storeCandleData(data, name))
+    .then(data => this.storeCandleData(data, name, resolution))
     .catch(err => {
       console.log(err);
     });
