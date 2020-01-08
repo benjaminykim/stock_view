@@ -1,4 +1,4 @@
-# Stock View
+# [Stock View](https://benjaminykim.github.io/stock_view/)
 
 A simple, minimal website that allows users to search stock tickers to view financial data pertaining to their stock
 choice. This project was built using React, Recharts, [Finnhub API](https://rapidapi.com/Finnhub/api/finnhub-realtime-stock-price/endpoints) and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
