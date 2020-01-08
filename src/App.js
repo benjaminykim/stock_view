@@ -1,7 +1,7 @@
 import React from 'react';
-import 'App.css';
+import './App.css';
 import { LineChart, Line, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts'
-import Stock from 'components/Stock'
+import Stock from './components/Stock'
 
 function generateChart(data) {
   var index = 0;
