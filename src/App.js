@@ -1,7 +1,32 @@
 import React from 'react';
 import './App.css';
-import { LineChart, Line, CartesianGrid, Tooltip, XAxis, YAxis, Legend } from 'recharts'
 import Stock from './components/Stock'
+import Chart from './components/Chart'
+
+function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp * 1000);
+  var year = a.getFullYear() % 100;
+  var month = a.getMonth() + 1;
+  var date = a.getDate();
+  var time = month + '/' + date + '/' + year;
+  return time;
+}
+
+function generateData(finData) {
+  var data = [];
+  for (var i=0; i < finData.c.length; i++)
+  {
+    data.push({
+      'close': finData.c[i],
+      'high': finData.h[i],
+      'low': finData.l[i],
+      'open': finData.o[i],
+      'time': timeConverter(finData.t[i]),
+      'volume': finData.v[i]
+    });
+  }
+  return (data);
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -16,70 +41,40 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="Information">
-        <Stock name={this.state.stockName}/>
-        {this.generateChart()}
+      <div  className="stock-information"
+            style={{
+              paddingBottom: '50%',
+              position:'relative',
+              height:0
+            }}>
+        <div  className="stock-title"
+              style={{
+                position:'relative',
+                top:'0',
+                left:'100px',
+                width:'100%',
+                height:'50px',
+              }}>
+          <Stock name={this.state.stockName}/>
+        </div>
+        <div  className="stock-chart"
+              style={{
+                position:'absolute',
+                top:'150px',
+                left:'0',
+                width:'100%',
+                height:'100%'
+              }}>
+          <Chart data={this.state.data}/>
+        </div>
       </div>
     )
-  }
-
-  generateChart() {
-    if (this.state.isDataLoaded)
-    {
-      var data = this.generateData();
-      return (
-        <LineChart width={600} height={300} data={data}>
-          <CartesianGrid strokeDasharray="3 3"/>
-          <XAxis dataKey="time"/>
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="close" stroke="#8884d8" />
-          <Line type="monotone" dataKey="high" stroke="#34e5eb" />
-          <Line type="monotone" dataKey="low" stroke="#eb34a8" />
-          <Line type="monotone" dataKey="open" stroke="#59eb34" />
-        </LineChart>
-      )
-    }
-    return (
-      <LineChart width={600} height={300}>
-        <CartesianGrid strokeDasharray="3 3"/>
-        <XAxis />
-        <YAxis />
-        <Tooltip/>
-      </LineChart>
-    )
-  }
-
-  timeConverter(UNIX_timestamp){
-    var a = new Date(UNIX_timestamp * 1000);
-    var year = a.getFullYear() % 100;
-    var month = a.getMonth() + 1;
-    var date = a.getDate();
-    var time = month + '/' + date + '/' + year;
-    return time;
-  }
-
-  generateData() {
-    var data = [];
-    for (var i=0; i < this.state.data.c.length; i++)
-    {
-      data.push({
-        'close': this.state.data.c[i],
-        'high': this.state.data.h[i],
-        'low': this.state.data.l[i],
-        'open': this.state.data.o[i],
-        'time': this.timeConverter(this.state.data.t[i]),
-        'volume': this.state.data.v[i]
-      });
-    }
-    return (data);
   }
 
   storeCandleData(data, name, resolution)
   {
     this.setState({
-      data:data,
+      data:generateData(data),
       stockName:name,
       resolution:resolution,
       isDataLoaded:true,
