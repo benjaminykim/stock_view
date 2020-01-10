@@ -24,45 +24,63 @@ const Chart = ({data}) => {
   if (data)
   {
     return (
-      <ResponsiveContainer width={700} height="80%">
-        <LineChart
-          width="100%"
-          height="100%"
-          data={data}
-          margin={{ top: 20, left: 20, right:20, bottom: 20}}
-        >
-          <CartesianGrid strokeDashArray="3 3" />
-          <XAxis
-            dataKey="time"
-            tickCount={5}
+      <div  className="stock-chart"
+            style={{
+              position:'absolute',
+              top:'150px',
+              left:'0',
+              width:'100%',
+              height:'100%'
+            }}>
+        <ResponsiveContainer width={700} height="80%">
+          <LineChart
+            width="100%"
+            height="100%"
+            data={data}
+            margin={{ top: 20, left: 20, right:20, bottom: 20}}
           >
-      </XAxis>
-          <YAxis
-            type="number"
-            domain={['auto', 'auto']}
-          />
-          <Tooltip content={<StockToolTip />}/>
-          <Legend />
-          <Line type="monotone" dataKey="close" stroke="#8884d8" dot={false}/>
-          <Line type="monotone" dataKey="high" stroke="#34e5eb" dot={false}/>
-          <Line type="monotone" dataKey="low" stroke="#eb34a8" dot={false}/>
-          <Line type="monotone" dataKey="open" stroke="#59eb34" dot={false}/>
-        </LineChart>
-      </ResponsiveContainer>
+            <CartesianGrid strokeDashArray="3 3" />
+            <XAxis
+              dataKey="time"
+              tickCount={5}
+            >
+        </XAxis>
+            <YAxis
+              type="number"
+              domain={['auto', 'auto']}
+            />
+            <Tooltip content={<StockToolTip />}/>
+            <Legend />
+            <Line type="monotone" dataKey="close" stroke="#8884d8" dot={false}/>
+            <Line type="monotone" dataKey="high" stroke="#34e5eb" dot={false}/>
+            <Line type="monotone" dataKey="low" stroke="#eb34a8" dot={false}/>
+            <Line type="monotone" dataKey="open" stroke="#59eb34" dot={false}/>
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     )
   }
   else
   {
     return (
-      <ResponsiveContainer width={700} height="80%">
-        <LineChart width="100%" height="100%" data={data}>
-          <CartesianGrid strokeDashArray="3 3" />
-          <XAxis dataKey="time" tickCount={5}/>
-          <YAxis type="number" domain={['auto', 'auto']} />
-          <Tooltip />
-          <Legend />
-        </LineChart>
-      </ResponsiveContainer>
+      <div  className="stock-chart"
+            style={{
+              position:'absolute',
+              top:'150px',
+              left:'0',
+              width:'100%',
+              height:'100%'
+            }}>
+        <ResponsiveContainer width={700} height="80%">
+          <LineChart width="100%" height="100%" data={data}>
+            <CartesianGrid strokeDashArray="3 3" />
+            <XAxis dataKey="time" tickCount={5}/>
+            <YAxis type="number" domain={['auto', 'auto']} />
+            <Tooltip />
+            <Legend />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     )
   }
 };

@@ -48,29 +48,9 @@ class App extends React.Component {
               position:'relative',
               height:0
             }}>
-        <div className="search-bar">
-          <Search/>
-        </div>
-        <div className="stock-title"
-              style={{
-                position:'relative',
-                top:'0',
-                left:'100px',
-                width:'100%',
-                height:'50px',
-              }}>
-          <Stock name={this.state.stockName}/>
-        </div>
-        <div className="stock-chart"
-              style={{
-                position:'absolute',
-                top:'150px',
-                left:'0',
-                width:'100%',
-                height:'100%'
-              }}>
-          <Chart data={this.state.data}/>
-        </div>
+        <Search/>
+        <Stock name={this.state.stockName}/>
+        <Chart data={this.state.data}/>
       </div>
     )
   }
