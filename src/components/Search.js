@@ -12,10 +12,29 @@ function loadFile(filePath) {
   return result;
 }
 
+function  getData() {
+  var data = loadFile('https://raw.githubusercontent.com/benjaminykim/stock_view/master/public/stock_listed.txt');
+  var res = data.split('\n');
+  var stock_ticker;
+  var company_name;
+  var add;
+  var ret = [];
+  for (var i=1; i < res.length; i++)
+  {
+    add = res[i];
+    stock_ticker = add.substr(0, add.indexOf('|') - 1);
+    company_name = add.substr(add.indexOf('|') + 1, add.indexOf('-') - 1);
+    ret.push({
+      key:stock_ticker,
+      value:company_name});
+  }
+  console.log(ret);
+  return (ret);
+}
+
 
 const Search = () => {
-  var data = loadFile('./public/stock_listed.txt');
-  console.log(data);
+  var data = getData();
   return (
     <ReactSearchBox
             placeholder=""
