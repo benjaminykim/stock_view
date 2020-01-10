@@ -1,5 +1,5 @@
 import React from 'react'
-import { Label, LineChart, Line, ResponsiveContainer, CartesianGrid, Tooltip, XAxis, YAxis, Legend} from 'recharts'
+import { LineChart, Line, ResponsiveContainer, CartesianGrid, Tooltip, XAxis, YAxis, Legend} from 'recharts'
 
 
 const StockToolTip = ({ active, payload, label }) => {

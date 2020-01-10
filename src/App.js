@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Stock from './components/Stock'
 import Chart from './components/Chart'
+import Search from './components/Search'
 
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -47,7 +48,10 @@ class App extends React.Component {
               position:'relative',
               height:0
             }}>
-        <div  className="stock-title"
+        <div className="search-bar">
+          <Search/>
+        </div>
+        <div className="stock-title"
               style={{
                 position:'relative',
                 top:'0',
@@ -57,7 +61,7 @@ class App extends React.Component {
               }}>
           <Stock name={this.state.stockName}/>
         </div>
-        <div  className="stock-chart"
+        <div className="stock-chart"
               style={{
                 position:'absolute',
                 top:'150px',
