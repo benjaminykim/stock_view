@@ -15,7 +15,6 @@ function loadFile(filePath) {
 function  getData() {
   var data = loadFile('https://raw.githubusercontent.com/benjaminykim/stock_view/master/public/stock_listed.txt');
   var res = data.split('\n');
-  console.log(res);
   var stock_ticker;
   var company_name;
   var add = [];
@@ -33,22 +32,26 @@ function  getData() {
       value:company_name
     });
   }
-  console.log(ret);
   return (ret);
 }
 
-
-const Search = () => {
+function Search(props) {
   var data = getData();
   return (
-    <div className="search-bar">
+    <div  className="search-bar"
+          style={{
+            position:'relative',
+            left:"70%",
+            width:"30%"
+          }}>
       <ReactSearchBox
               placeholder=""
               value="AAPL"
               data={data}
-              callback={record => console.log(record)}
+              onSelect={props.f}
       />
     </div>
-  )}
+  )
+}
 
 export default Search;

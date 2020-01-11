@@ -38,6 +38,12 @@ class App extends React.Component {
       resolution: null,
       isDataLoaded: false,
     }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(record) {
+    console.log(record);
+    this.getStockCandle(record.key);
   }
 
   render() {
@@ -48,9 +54,11 @@ class App extends React.Component {
               position:'relative',
               height:0
             }}>
-        <Search/>
         <Stock name={this.state.stockName}/>
-        <Chart data={this.state.data}/>
+        <div>
+          <Chart data={this.state.data}/>
+          <Search f={this.handleClick}/>
+        </div>
       </div>
     )
   }
