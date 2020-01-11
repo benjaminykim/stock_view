@@ -38,6 +38,8 @@ class App extends React.Component {
       resolution: null,
       isDataLoaded: false,
     }
+    this.base_url = 'https://finnhub.io/api/v1'
+    this.candle_endpoint = '/stock/candle?'
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -73,6 +75,12 @@ class App extends React.Component {
     });
   }
 
+  getCandleUrl(name, count, resolution)
+  {
+    var url = this.base_url + this.candle_endpoint + "symbol=" + name + "&resolution=" + resolution +  "&count=" + count + "&token=boamq6vrh5rbii6a3j30"
+    return (url);
+  }
+
   getStockCandle(name="AAPL", count=200, resolution="D")
   {
     let url = 'https://finnhub-realtime-stock-price.p.rapidapi.com/stock/candle?count=' + count + '&symbol=' +name + '&resolution=' + resolution;
@@ -91,8 +99,26 @@ class App extends React.Component {
     });
   }
 
+  getStockCandle2(name='AAPL', count=200, resolution='D')
+  {
+    var url = this.getCandleUrl(name, count, resolution);
+    console.log("URL: ", url);
+
+    fetch(url, {
+      'method': "GET",
+      'mode': "no-cors",
+      'cache': "no-cache",
+      'headers': {
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+    .then(res => res.json())
+    .then(data => this.storeCandleData(data))
+    .catch(error => {console.log("ERROR: ", error);})
+  }
+
   componentDidMount(){
-    this.getStockCandle("AAPL");
+    this.getStockCandle2("AAPL", 200, "D");
   }
 }
 
