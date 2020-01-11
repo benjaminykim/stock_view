@@ -118,7 +118,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    this.getStockCandle2("AAPL", 200, "D");
+    this.getStockCandle("AAPL", 200, "D");
   }
 }
 
