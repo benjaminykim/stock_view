@@ -99,26 +99,8 @@ class App extends React.Component {
     });
   }
 
-  getStockCandle2(name='AAPL', count=200, resolution='D')
-  {
-    var url = this.getCandleUrl(name, count, resolution);
-    console.log("URL: ", url);
-
-    fetch(url, {
-      'method': "GET",
-      'mode': "no-cors",
-      'cache': "no-cache",
-      'headers': {
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-    .then(res => res.json())
-    .then(data => this.storeCandleData(data))
-    .catch(error => {console.log("ERROR: ", error);})
-  }
-
   componentDidMount(){
-    this.getStockCandle("AAPL", 200, "D");
+    this.getStockCandle("TWTR", 200, "D");
   }
 }
 
