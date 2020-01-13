@@ -1,8 +1,13 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import Stock from './components/Stock'
 import Chart from './components/Chart'
 import Search from './components/Search'
+import StockView from './components/StockView'
+import WatchlistView from './components/WatchlistView'
+import MarketView from './components/MarketView'
 
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -50,14 +55,36 @@ class App extends React.Component {
 
   render() {
     return (
-      <div  className="stock-information"
-            style={{
-              paddingBottom: '50%',
-              position:'relative',
-              height:0
+      <div  className="stock-information">
+        <Router>
+        <div className="container">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <Link to="/" className="navbar-brand">Stock View</Link>
+            <div className="collpase navbar-collapse">
+              <ul className="navbar-nav mr-auto">
+                <li className="navbar-item">
+                  <Link to="/" className="nav-link">Home</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/watchlist" className="nav-link">Watchlist</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/markets" className="nav-link">Markets</Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <br/>
+          <Route path="/" exact component={StockView} />
+          <Route path="/watchlist" component={WatchlistView} />
+          <Route path="/markets" component={MarketView} />
+        </div>
+      </Router>
+        <div  style={{
+                paddingBottom: '50%',
+                position:'relative',
+                height:0
             }}>
-        <Stock name={this.state.stockName}/>
-        <div>
           <Chart data={this.state.data}/>
           <Search f={this.handleClick}/>
         </div>
