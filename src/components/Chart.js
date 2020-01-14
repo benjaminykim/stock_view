@@ -27,7 +27,6 @@ const Chart = ({data}) => {
       <div  className="stock-chart"
         style={{
           position:'absolute',
-          top:'150px',
           left:'0',
           width:'70%',
           height:'100%'
@@ -64,13 +63,12 @@ const Chart = ({data}) => {
   {
     return (
       <div  className="stock-chart"
-        style={{
-          position:'absolute',
-          top:'150px',
-          left:'0',
-          width:'70%',
-          height:'100%'
-            }}>
+      style={{
+        position:'relative',
+        left:'0',
+        width:'70%',
+        height:'100%'
+          }}>
         <ResponsiveContainer width={700} height="80%">
           <LineChart width="100%" height="100%" data={data}>
             <CartesianGrid strokeDashArray="3 3" />
