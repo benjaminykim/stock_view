@@ -77,24 +77,6 @@ class StockView extends React.Component {
 
   getStockCandle(name="AAPL", count=200, resolution="D")
   {
-    let url = 'https://finnhub-realtime-stock-price.p.rapidapi.com/stock/candle?count=' + count + '&symbol=' +name + '&resolution=' + resolution;
-    console.log(url);
-    fetch(url, {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "finnhub-realtime-stock-price.p.rapidapi.com",
-        "x-rapidapi-key": "bfc0641820msh0bbab8db87079ebp145b2djsnc142f2e17a4d"
-      }
-    })
-    .then(response => response.json())
-    .then(data => this.storeCandleData(data, name, resolution))
-    .catch(err => {
-      console.log(err);
-    });
-  }
-
-  getStockCandle2(name="AAPL", count=200, resolution="D")
-  {
     var url = this.getCandleUrl(name, count, resolution);
     console.log(url);
     fetch(url, {
