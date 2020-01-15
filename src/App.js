@@ -20,8 +20,8 @@ class App extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="/stock_view">Home</Nav.Link>
-                <Nav.Link href="/stock_view/watchlist">Watchlist</Nav.Link>
-                <Nav.Link href="/stock_view/markets">Markets</Nav.Link>
+                <Nav.Link href="/watchlist">Watchlist</Nav.Link>
+                <Nav.Link href="/markets">Markets</Nav.Link>
               </Nav>
               <Form inline>
                 <FormControl type="text" placeholder="AAPL" className="mr-sm-2" />
@@ -31,8 +31,8 @@ class App extends React.Component {
           </Navbar>
           <br/>
           <Route path="/stock_view" exact component={StockView} />
-          <Route path="/stock_view/watchlist" component={WatchlistView} />
-          <Route path="/stock_view/markets" component={MarketView} />
+          <Route path="/watchlist" component={WatchlistView} />
+          <Route path="/markets" component={MarketView} />
         </Container>
       </Router>
       </div>
