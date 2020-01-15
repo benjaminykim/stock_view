@@ -12,7 +12,7 @@ function loadFile(filePath) {
   return result;
 }
 
-function  getData() {
+function  processSearchData() {
   var data = loadFile('https://raw.githubusercontent.com/benjaminykim/stock_view/master/public/stock_listed.txt');
   var res = data.split('\n');
   var stock_ticker;
@@ -36,21 +36,16 @@ function  getData() {
 }
 
 function Search(props) {
-  var data = getData();
+  var data = processSearchData();
   return (
-    <div  className="search-bar"
-          style={{
-            position:'relative',
-            left:"70%",
-            width:"30%"
-          }}>
-      <ReactSearchBox
-              placeholder=""
-              value="AAPL"
-              data={data}
-              onSelect={props.f}
-      />
-    </div>
+    <ReactSearchBox
+            placeholder=""
+            value="TWTR"
+            autoFocus={true}
+            dropDownBorderColor={"#ffffff"}
+            data={data}
+            onSelect={props.f}
+    />
   )
 }
 

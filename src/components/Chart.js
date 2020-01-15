@@ -24,13 +24,6 @@ const Chart = ({data}) => {
   if (data)
   {
     return (
-      <div  className="stock-chart"
-        style={{
-          position:'absolute',
-          left:'0',
-          width:'70%',
-          height:'100%'
-            }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             width="100%"
@@ -56,19 +49,11 @@ const Chart = ({data}) => {
             <Line type="monotone" dataKey="open" stroke="#59eb34" dot={false}/>
           </LineChart>
         </ResponsiveContainer>
-      </div>
     )
   }
   else
   {
     return (
-      <div  className="stock-chart"
-      style={{
-        position:'relative',
-        left:'0',
-        width:'70%',
-        height:'100%'
-          }}>
         <ResponsiveContainer width={700} height="80%">
           <LineChart width="100%" height="100%" data={data}>
             <CartesianGrid strokeDashArray="3 3" />
@@ -78,7 +63,6 @@ const Chart = ({data}) => {
             <Legend />
           </LineChart>
         </ResponsiveContainer>
-      </div>
     )
   }
 };

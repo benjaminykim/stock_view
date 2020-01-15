@@ -1,6 +1,8 @@
 import React from 'react';
 import Chart from './Chart'
 import Search from './Search'
+import StockCard from './StockCard'
+import { Row, Col} from 'react-bootstrap'
 
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -48,14 +50,19 @@ class StockView extends React.Component {
 
   render() {
     return (
-      <div style={{
-        paddingBottom:'50%',
-        position:'relative',
-        height:0
-      }}>
-      <Chart data={this.state.data}/>
-      <Search f={this.handleClick}/>
-      </div>
+      <Row>
+        <Col sm={8}>
+          <div style={{height:"800px", width:"100%"}}>
+          <Chart data={this.state.data}/>
+          </div>
+        </Col>
+        <Col sm={4}>
+          <div style={{position:"absolute", top:"19px", width:"80%"}}>
+          <Search f={this.handleClick}/>
+          <StockCard data={this.state}/>
+          </div>
+        </Col>
+      </Row>
     )
   }
 

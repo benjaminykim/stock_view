@@ -1,6 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Container from 'react-bootstrap/Container';
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import './App.css';
 import StockView from './components/StockView'
 import WatchlistView from './components/WatchlistView'
@@ -9,30 +11,29 @@ import MarketView from './components/MarketView'
 class App extends React.Component {
   render() {
     return (
-      <div  className="stock-information">
+      <div  className="stock-information" >
         <Router>
-        <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to="/" className="navbar-brand">Stock View</Link>
-            <div className="collpase navbar-collapse">
-              <ul className="navbar-nav mr-auto">
-                <li className="navbar-item">
-                  <Link to="/" className="nav-link">Home</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/watchlist" className="nav-link">Watchlist</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/markets" className="nav-link">Markets</Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
+        <Container fluid="true">
+          <Navbar bg="light" expand="lg" sticky="top">
+            <Navbar.Brand href="/">stock_view</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/watchlist">Watchlist</Nav.Link>
+                <Nav.Link href="/markets">Markets</Nav.Link>
+              </Nav>
+              <Form inline>
+                <FormControl type="text" placeholder="AAPL" className="mr-sm-2" />
+                <Button variant="outline-success">Search</Button>
+              </Form>
+            </Navbar.Collapse>
+          </Navbar>
           <br/>
           <Route path="/" exact component={StockView} />
           <Route path="/watchlist" component={WatchlistView} />
           <Route path="/markets" component={MarketView} />
-        </div>
+        </Container>
       </Router>
       </div>
     )
