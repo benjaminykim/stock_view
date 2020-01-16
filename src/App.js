@@ -128,8 +128,8 @@ class App extends React.Component {
 								</React.Fragment>
 							)}
 						/>
-          <Route path="/watchlist" component={WatchlistView} />
-          <Route path="/markets" component={MarketView} />
+          <Route exact path="/stock_view/watchlist" component={WatchlistView} />
+          <Route exact path="/stock_view/markets" component={MarketView} />
         </Container>
       </Router>
     )
