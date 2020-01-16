@@ -16,19 +16,19 @@ const StockCard = (props) => {
           </tr>
           <tr>
             <td>Open </td>
-            <td>${ data.open }</td>
+            <td>${ data[1] }</td>
           </tr>
           <tr>
             <td>Close </td>
-            <td>${ data.close }</td>
+            <td>${ data[2] }</td>
           </tr>
           <tr>
             <td>High </td>
-            <td>${ data.high }</td>
+            <td>${ data[3] }</td>
           </tr>
           <tr>
             <td>Low </td>
-            <td>${ data.low }</td>
+            <td>${ data[4] }</td>
           </tr>
           <tr>
             <td>Volume</td>

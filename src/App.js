@@ -17,27 +17,30 @@ function getCandleUrl(name, count, resolution)
   return (url);
 }
 
-function timeConverter(UNIX_timestamp){
-  var a = new Date(UNIX_timestamp * 1000);
-  var year = a.getFullYear() % 100;
-  var month = a.getMonth() + 1;
-  var date = a.getDate();
-  var time = month + '/' + date + '/' + year;
-  return time;
-}
-
 function generateData(finData) {
   var data = [];
   for (var i=0; i < finData.c.length; i++)
   {
-    data.push({
-      'close': finData.c[i],
-      'high': finData.h[i],
-      'low': finData.l[i],
-      'open': finData.o[i],
-      'time': timeConverter(finData.t[i]),
-      'volume': finData.v[i]
-    });
+    data.push([
+      finData.t[i] * 1000,
+      finData.o[i],
+      finData.h[i],
+      finData.l[i],
+      finData.c[i],
+      finData.v[i]
+    ]);
+  }
+  return (data);
+}
+
+function generateVolumeData(finData) {
+  var data = [];
+  for (var i=0; i < finData.c.length; i++)
+  {
+    data.push([
+      finData.t[i] * 1000,
+      finData.v[i]
+    ]);
   }
   return (data);
 }
@@ -49,6 +52,7 @@ class App extends React.Component {
       search_field: '',
       stock_name: "TWTR",
       data: [],
+      volume: [],
       isDataLoaded:false,
       resolution:'',
       company_name:'TWITTER'
@@ -82,6 +86,7 @@ class App extends React.Component {
     if (data.s === "ok") {
       this.setState({
         data:generateData(data),
+        volume:generateVolumeData(data),
         stock_name:name,
         resolution:resolution,
         isDataLoaded:true,
@@ -111,7 +116,7 @@ class App extends React.Component {
 
   renderStockView(){
     if (this.state.isDataLoaded) {
-      return (<StockView ticker={this.state.stock_name} data={this.state.data} company_name={this.state.company_name} />);
+      return (<StockView ticker={this.state.stock_name} data={this.state.data} volume={this.state.volume} company_name={this.state.company_name} />);
     }
   }
 
@@ -126,8 +131,8 @@ class App extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="/stock_view">Home</Nav.Link>
-                <Nav.Link href="/watchlist">Watchlist</Nav.Link>
-                <Nav.Link href="/markets">Markets</Nav.Link>
+                <Nav.Link href="/stock_view/watchlist">Watchlist</Nav.Link>
+                <Nav.Link href="/stock_view/markets">Markets</Nav.Link>
               </Nav>
               <Form inline >
                 <Form.Control size="sm" type="text" placeholder="TWTR" className="mr-sm-2" onChange={this.handleChange} onKeyPress={this.handleEnter} onSubmit={this.handleSubmit}/>
