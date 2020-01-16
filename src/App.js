@@ -57,11 +57,20 @@ class App extends React.Component {
   }
 
   handleChange = (e) => {
-    console.log("App.handleChange: ", e.target.value);
     this.search_field = e.target.value;
   }
 
+  handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (this.search_field !== this.state.stock_name) {
+        this.getStockCandle(this.search_field, 200, "D");
+      }
+    }
+  }
+
   handleSubmit = (e) => {
+    e.preventDefault();
     if (this.search_field !== this.state.stock_name) {
       this.getStockCandle(this.search_field, 200, "D");
     }
@@ -112,8 +121,8 @@ class App extends React.Component {
                 <Nav.Link href="/watchlist">Watchlist</Nav.Link>
                 <Nav.Link href="/markets">Markets</Nav.Link>
               </Nav>
-              <Form inline onSubmit={this.handleSubmit}>
-                <FormControl type="text" placeholder="TWTR" className="mr-sm-2" onChange={this.handleChange} />
+              <Form inline >
+                <FormControl type="text" placeholder="TWTR" className="mr-sm-2" onChange={this.handleChange} onKeyPress={this.handleEnter} onSubmit={this.handleSubmit}/>
                 <Button variant="outline-success" onClick={this.handleSubmit} >Search</Button>
               </Form>
             </Navbar.Collapse>
