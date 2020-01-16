@@ -5,12 +5,8 @@ import DarkUnica from 'highcharts/themes/dark-unica';
 
 DarkUnica(Highcharts);
 
-function Chart(props) {
-  var ohlc = props.data;
-  var volume = props.volume;
-  var ticker = props.ticker;
-
-  const options = {
+function getOptions(ohlc, volume, ticker) {
+  return ({
     yAxis: [{
       labels: {
           align: 'left'
@@ -83,13 +79,14 @@ function Chart(props) {
           }
       }]
     }
-  }
+  });
+}
 
-  console.log("highchart: ", props.data);
+function Chart(props) {
   return (<HighchartsReact
     highcharts={Highcharts}
     constructorType={'stockChart'}
-    options={options}
+    options={getOptions(props.data, props.volume, props.ticker)}
   />)
 };
 
