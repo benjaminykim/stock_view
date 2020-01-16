@@ -10,12 +10,12 @@ class StockView extends React.Component {
     return (
       <Row>
         <Col sm={8}>
-          <div style={{height:"800px", width:"100%"}}>
-          <Chart data={this.props.data}/>
+          <div style={{height:"700px", width:"100%", background:"white"}}>
+            <Chart data={this.props.data}/>
           </div>
         </Col>
         <Col sm={4}>
-          <div style={{position:'relative', height:"800px", top:"18px", width:"100%"}}>
+          <div style={{position:'relative', height:"800px", width:"100%"}}>
             <StockCard ticker={this.props.ticker} company_name={this.props.company_name} data={this.props.data} />
           </div>
         </Col>

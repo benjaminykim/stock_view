@@ -117,10 +117,11 @@ class App extends React.Component {
 
   render() {
     return (
+      <div style={{backgroundColor:'gray'}}>
         <Router>
-        <Container fluid="true">
-          <Navbar bg="light" expand="lg" sticky="top">
-            <Navbar.Brand href="/stock_view">stock_view</Navbar.Brand>
+        <Container fluid>
+          <Navbar hover bg="dark" expand="lg" variant="dark" sticky="top">
+            <Navbar.Brand style={{color:"#20c94d"}}href="/stock_view">stock_view</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
@@ -148,6 +149,7 @@ class App extends React.Component {
           <Route exact path="/stock_view/markets" component={MarketView} />
         </Container>
       </Router>
+      </div>
     )
   }
 }

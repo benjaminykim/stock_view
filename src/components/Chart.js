@@ -26,19 +26,13 @@ function renderLines(data, o, h, c, l) {
 function Chart(props) {
   console.log("chart: ", props.data);
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <LineChart
-        width="100%"
-        height="100%"
-        data={props.data}
-        margin={{ top: 20, left: 20, right:20, bottom: 20}} >
+    <ResponsiveContainer width="100%" height={700}>
+      <LineChart data={props.data} margin={{ top: 20, left:0, right:50, bottom: 20}} >
         <CartesianGrid strokeDashArray="3 3" />
-        <XAxis
-          dataKey="time"
-          tickCount={5} >
-    </XAxis>
+        <XAxis dataKey="time" tickCount={5} />
         <YAxis type="number" domain={['auto', 'auto']} />
-        <Tooltip content={<StockToolTip />} />
+        {/*<Tooltip content={<StockToolTip />} />*/}
+        <Tooltip />
         <Legend />
         { renderLines(props.data, false, false, true, false) }
       </LineChart>
