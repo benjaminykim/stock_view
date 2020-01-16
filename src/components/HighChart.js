@@ -8,6 +8,7 @@ DarkUnica(Highcharts);
 function Chart(props) {
   var ohlc = props.data;
   var volume = props.volume;
+  var ticker = props.ticker;
 
   const options = {
     yAxis: [{
@@ -61,12 +62,12 @@ function Chart(props) {
     series: [{
       type: 'ohlc',
       id: 'aapl-ohlc',
-      name: 'AAPL Stock Price',
+      name: ticker + ' Stock Price',
       data: ohlc
     }, {
       type: 'column',
-      id: 'aapl-volume',
-      name: 'AAPL Volume',
+      id: ticker + '-volume',
+      name: ticker + ' Volume',
       data: volume,
       yAxis: 1
     }],
