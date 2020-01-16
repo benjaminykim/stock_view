@@ -10,8 +10,8 @@ class StockView extends React.Component {
     return (
       <Row>
         <Col sm={9}>
-          <div style={{height:"100%", width:"100%"}}>
-            <Chart data={this.props.data} volume={this.props.volume}/>
+          <div style={{height:"800px", width:"100%"}}>
+            <Chart ticker={this.props.ticker} data={this.props.data} volume={this.props.volume}/>
           </div>
         </Col>
         <Col sm={3}>
