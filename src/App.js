@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from 'react-bootstrap/Container';
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, Form, Button } from 'react-bootstrap';
 import './App.css';
 import StockView from './components/StockView'
 import WatchlistView from './components/WatchlistView'
@@ -50,7 +50,8 @@ class App extends React.Component {
       stock_name: "TWTR",
       data: [],
       isDataLoaded:false,
-      resolution:''
+      resolution:'',
+      company_name:'TWITTER'
     };
 
     var search_field = '';
@@ -108,6 +109,12 @@ class App extends React.Component {
     this.getStockCandle(this.state.stock_name, 200, "D");
   }
 
+  renderStockView(){
+    if (this.state.isDataLoaded) {
+      return (<StockView ticker={this.state.stock_name} data={this.state.data} company_name={this.state.company_name} />);
+    }
+  }
+
   render() {
     return (
         <Router>
@@ -122,8 +129,8 @@ class App extends React.Component {
                 <Nav.Link href="/markets">Markets</Nav.Link>
               </Nav>
               <Form inline >
-                <FormControl type="text" placeholder="TWTR" className="mr-sm-2" onChange={this.handleChange} onKeyPress={this.handleEnter} onSubmit={this.handleSubmit}/>
-                <Button variant="outline-success" onClick={this.handleSubmit} >Search</Button>
+                <Form.Control size="sm" type="text" placeholder="TWTR" className="mr-sm-2" onChange={this.handleChange} onKeyPress={this.handleEnter} onSubmit={this.handleSubmit}/>
+                <Button size="sm" variant="outline-success" onClick={this.handleSubmit} >Search</Button>
               </Form>
             </Navbar.Collapse>
           </Navbar>
@@ -133,7 +140,7 @@ class App extends React.Component {
 							path='/stock_view'
 							render={(props) => (
 								<React.Fragment>
-                  <StockView name={this.state.stock_name} data={this.state.data} />
+                  { this.renderStockView() }
 								</React.Fragment>
 							)}
 						/>
