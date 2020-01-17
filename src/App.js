@@ -62,7 +62,7 @@ class App extends React.Component {
   }
 
   handleChange = (e) => {
-    this.search_field = e.target.value;
+    this.search_field = e.target.value.toUpperCase();
   }
 
   handleEnter = (e) => {
@@ -122,7 +122,6 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{backgroundColor:'gray'}}>
         <Router>
         <Container fluid>
           <Navbar hover bg="dark" expand="lg" variant="dark" sticky="top">
@@ -154,7 +153,6 @@ class App extends React.Component {
           <Route exact path="/stock_view/markets" component={MarketView} />
         </Container>
       </Router>
-      </div>
     )
   }
 }
