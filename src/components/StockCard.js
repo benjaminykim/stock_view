@@ -6,7 +6,7 @@ const StockCard = (props) => {
   var data = props.data[0];
   return (
     <Card bg="dark" text="white" style={{ width: '100%' }}>
-    <Card.Header><center>{ props.company_name } </center></Card.Header>
+    <Card.Header><center>{ props.name } </center></Card.Header>
     <Card.Body>
       <Table striped bordered hover variant="dark">
         <tbody>

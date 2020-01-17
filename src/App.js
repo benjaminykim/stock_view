@@ -8,12 +8,20 @@ import StockView from './components/StockView'
 import WatchlistView from './components/WatchlistView'
 import MarketView from './components/MarketView'
 
-const base_url = 'https://finnhub.io/api/v1';
-const candle_endpoint = '/stock/candle?';
+const baseUrl = 'https://finnhub.io/api/v1';
+const candleEndpoint = '/stock/candle?';
+const profileEndpoint = '/stock/profile?';
+const token = "&token=boamq6vrh5rbii6a3j30";
 
-function getCandleUrl(name, count, resolution)
+function getUrl(endpoint=candleEndpoint, symbol="TWTR", count=200, resolution="D")
 {
-  var url = base_url + candle_endpoint + "symbol=" + name + "&resolution=" + resolution +  "&count=" + count + "&token=boamq6vrh5rbii6a3j30"
+  var url = baseUrl + endpoint;
+  if (endpoint === candleEndpoint) {
+    url += "symbol=" + symbol + "&resolution=" + resolution +  "&count=" + count;
+  } else if (endpoint === profileEndpoint) {
+    url += "symbol=" + symbol;
+  }
+  url += token;
   return (url);
 }
 
@@ -49,13 +57,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search_field: '',
-      stock_name: "TWTR",
+      symbol: "TWTR",
       data: [],
       volume: [],
       isDataLoaded:false,
       resolution:'',
-      company_name:'TWITTER'
+      name:'TWITTER',
+      profile:null
     };
 
     var search_field = '';
@@ -68,55 +76,78 @@ class App extends React.Component {
   handleEnter = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      if (this.search_field !== this.state.stock_name) {
-        this.getStockCandle(this.search_field, 200, "D");
+      if (this.search_field !== this.state.symbol) {
+        this.getStockInformation(this.search_field, 200, "D");
       }
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.search_field !== this.state.stock_name) {
-      this.getStockCandle(this.search_field, 200, "D");
+    if (this.search_field !== this.state.symbol) {
+      this.getStockInformation(this.search_field, 200, "D");
     }
   }
 
-  storeCandleData(data, name, resolution)
+  storeCandleData(data, symbol, resolution)
   {
     if (data.s === "ok") {
       this.setState({
         data:generateData(data),
         volume:generateVolumeData(data),
-        stock_name:name,
+        symbol:symbol,
         resolution:resolution,
         isDataLoaded:true,
       });
     } else {
       console.log("invalid user input");
+      this.setState({ isDataLoaded:false });
     }
   }
 
-  getStockCandle(name="TWTR", count=200, resolution="D")
+  storeStockProfile(data) {
+    if (this.state.isDataLoaded) {
+      this.setState({ profile:data, name:data.name });
+    }
+  }
+
+  getStockCandle(symbol="TWTR", count=200, resolution="D")
   {
-    var url = getCandleUrl(name, count, resolution);
-    console.log("fetching: ", url);
-    fetch(url, {
-      "method": "GET",
-    })
+    var url = getUrl(candleEndpoint, symbol, count, resolution);
+    console.log("Fetch Company Candle: ", url);
+    fetch(url, { "method": "GET" })
     .then(response => response.json())
-    .then(data => this.storeCandleData(data, name, resolution))
-    .catch(err => {
-      console.log(err);
-    });
+    .then(data => this.storeCandleData(data, symbol, resolution))
+    .catch(err => console.log(err));
+  }
+
+  getStockProfile(symbol="TWTR")
+  {
+    var url = getUrl(profileEndpoint, symbol);
+    console.log("Fetch Company Profile: ", url);
+    fetch(url, { "method": "GET" })
+    .then(response => response.json())
+    .then(data => this.storeStockProfile(data))
+    .catch(err => console.log(err));
+  }
+
+  getStockInformation(symbol="TWTR", count=200, resolution="D") {
+    this.getStockCandle(symbol, count, resolution);
+    this.getStockProfile(symbol);
   }
 
   componentDidMount(){
-    this.getStockCandle(this.state.stock_name, 200, "D");
+    this.getStockInformation();
   }
 
   renderStockView(){
     if (this.state.isDataLoaded) {
-      return (<StockView ticker={this.state.stock_name} data={this.state.data} volume={this.state.volume} company_name={this.state.company_name} />);
+      return (<StockView
+        symbol={this.state.symbol}
+        name={this.state.name}
+        data={this.state.data}
+        volume={this.state.volume}
+        profile={this.state.profile}/>);
     }
   }
 

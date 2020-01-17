@@ -15,7 +15,7 @@ class StockView extends React.Component {
         </Col>
         <Col sm={3}>
           <div style={{position:'relative', height:"100%", width:"100%"}}>
-            <StockCard ticker={this.props.ticker} company_name={this.props.company_name} data={this.props.data} volume={this.props.volume[0]} />
+            <StockCard ticker={this.props.symbol} name={this.props.name} data={this.props.data} volume={this.props.volume[0]} />
           </div>
         </Col>
       </Row>
