@@ -1,7 +1,6 @@
 import React from 'react';
 import Chart from './HighChart'
 import StockCard from './StockCard'
-import StockMenu from './StockMenu'
 import { Row, Col } from 'react-bootstrap'
 
 class StockView extends React.Component {
@@ -17,8 +16,6 @@ class StockView extends React.Component {
         <Col sm={3}>
           <div style={{position:'relative', height:"800px", width:"100%"}}>
             <StockCard ticker={this.props.ticker} company_name={this.props.company_name} data={this.props.data} volume={this.props.volume[0]} />
-            <br/>
-            <StockMenu />
           </div>
         </Col>
       </Row>
