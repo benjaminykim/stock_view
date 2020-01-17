@@ -2,17 +2,17 @@ import React from 'react';
 import { Card, Table } from 'react-bootstrap'
 
 const StockCard = (props) => {
-  console.log(props.data);
+  props = props.data;
   var data = props.data[0];
   return (
     <Card bg="dark" text="white" style={{ width: '100%' }}>
-    <Card.Header><center>{ props.name } </center></Card.Header>
+    <Card.Header><center>{props.name} </center></Card.Header>
     <Card.Body>
       <Table striped bordered hover variant="dark">
         <tbody>
           <tr>
             <td>Ticker</td>
-            <td>{props.ticker}</td>
+            <td>{props.symbol}</td>
           </tr>
           <tr>
             <td>Open </td>
@@ -32,7 +32,7 @@ const StockCard = (props) => {
           </tr>
           <tr>
             <td>Volume</td>
-            <td>{ props.volume[1] }</td>
+            <td>{ props.volume[0][1] }</td>
           </tr>
         </tbody>
       </Table>

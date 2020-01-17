@@ -62,7 +62,7 @@ class App extends React.Component {
       volume: [],
       isDataLoaded:false,
       resolution:'',
-      name:'TWITTER',
+      name:'TWITTER INC',
       profile:null
     };
 
@@ -142,12 +142,7 @@ class App extends React.Component {
 
   renderStockView(){
     if (this.state.isDataLoaded) {
-      return (<StockView
-        symbol={this.state.symbol}
-        name={this.state.name}
-        data={this.state.data}
-        volume={this.state.volume}
-        profile={this.state.profile}/>);
+      return (<StockView props={this.state} />);
     }
   }
 

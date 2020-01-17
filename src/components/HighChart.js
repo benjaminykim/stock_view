@@ -82,7 +82,8 @@ function getOptions(ohlc, volume, ticker) {
   });
 }
 
-function Chart(props) {
+const Chart = (props) => {
+  props = props.data;
   return (<HighchartsReact
     highcharts={Highcharts}
     constructorType={'stockChart'}
