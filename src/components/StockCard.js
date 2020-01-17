@@ -32,7 +32,7 @@ const StockCard = (props) => {
           </tr>
           <tr>
             <td>Volume</td>
-            <td>{ data.volume }</td>
+            <td>{ props.volume[1] }</td>
           </tr>
         </tbody>
       </Table>
