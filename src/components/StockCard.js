@@ -1,12 +1,23 @@
 import React from 'react';
-import { Card, Table } from 'react-bootstrap'
+import { Button, Card, Table } from 'react-bootstrap'
 
 const StockCard = (props) => {
   props = props.data;
   var data = props.data[0];
   return (
     <Card bg="dark" text="white" style={{ width: '100%' }}>
-    <Card.Header><center>{props.name} </center></Card.Header>
+    <Card.Header>
+      <div class="float-left">{props.name}</div>
+      <div class="float-right"><Button style={{
+        width: "30px",
+        height: "30px",
+        textAlign: "center",
+        padding: "0px 6px",
+        fontSize: "14px",
+        lineHeight: 1.428571429,
+        borderRadius: "15px"
+      }}>+</Button></div>
+    </Card.Header>
     <Card.Body>
       <Table striped bordered hover variant="dark">
         <tbody>
