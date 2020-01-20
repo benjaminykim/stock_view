@@ -7,6 +7,8 @@ import './App.css';
 import StockView from './components/StockView'
 import WatchlistView from './components/WatchlistView'
 import MarketView from './components/MarketView'
+import store from './store'
+import { searchStock } from './actions'
 
 const baseUrl = 'https://finnhub.io/api/v1';
 const candleEndpoint = '/stock/candle?';
@@ -132,6 +134,7 @@ class App extends React.Component {
   }
 
   getStockInformation(symbol="TWTR", count=200, resolution="D") {
+    store.dispatch(searchStock(symbol));
     this.getStockCandle(symbol, count, resolution);
     this.getStockProfile(symbol);
   }
