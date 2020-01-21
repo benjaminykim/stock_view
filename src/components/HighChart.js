@@ -83,12 +83,16 @@ function getOptions(ohlc, volume, ticker) {
 }
 
 const Chart = (props) => {
-  props = props.data;
+  //props = props.data;
+  if (props.isDataLoaded) {
   return (<HighchartsReact
     highcharts={Highcharts}
     constructorType={'stockChart'}
-    options={getOptions(props.data, props.volume, props.ticker)}
+    options={getOptions(props.data, props.volume, props.symbol)}
   />)
+  } else {
+    return (<div></div>)
+  }
 };
 
 export default Chart;

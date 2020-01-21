@@ -4,7 +4,7 @@ import StockCard from './StockCard'
 import { Row, Col } from 'react-bootstrap'
 
 const StockView = (props) => {
-  props = props.props;
+  //props = props.props;
   console.log("StockView Render");
   return (
     <Row>

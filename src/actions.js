@@ -19,13 +19,19 @@ function receiveStock(symbol, data) {
   return {
     type: "RECEIVE_STOCK",
     symbol,
-    data: data,
-    receivedAt: Data.now()
+    data: data
+  }
+}
+export function addStock(symbol) {
+  return {
+    type: "ADD_STOCK",
+    symbol
   }
 }
 export function fetchStock(symbol) {
   return function(dispatch) {
     dispatch(requestStock(symbol));
+    var url = "A"
     return fetch(url)
       .then(
         response => response.json(),

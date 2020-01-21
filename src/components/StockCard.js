@@ -2,8 +2,8 @@ import React from 'react';
 import { Button, Card, Table } from 'react-bootstrap'
 
 const StockCard = (props) => {
-  props = props.data;
-  var data = props.data[0];
+  //props = props.data;
+  //var data = props.data[0];
   return (
     <Card bg="dark" text="white" style={{ width: '100%' }}>
     <Card.Header>
@@ -27,23 +27,23 @@ const StockCard = (props) => {
           </tr>
           <tr>
             <td>Open </td>
-            <td>${ data[1] }</td>
+            <td>${ props.data[1] }</td>
           </tr>
           <tr>
             <td>Close </td>
-            <td>${ data[2] }</td>
+            <td>${ props.data[2] }</td>
           </tr>
           <tr>
             <td>High </td>
-            <td>${ data[3] }</td>
+            <td>${ props.data[3] }</td>
           </tr>
           <tr>
             <td>Low </td>
-            <td>${ data[4] }</td>
+            <td>${ props.data[4] }</td>
           </tr>
           <tr>
             <td>Volume</td>
-            <td>{ props.volume[0][1] }</td>
+            <td>{ props.volume }</td>
           </tr>
         </tbody>
       </Table>

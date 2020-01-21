@@ -1,25 +1,24 @@
-import React from 'react';
-import Chart from '../components/HighChart'
-import StockCard from '../components/StockCard'
-import { Row, Col } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import StockView1 from '../components/StockView'
+import { addStock } from '../actions'
 
-const StockView = (props) => {
-  props = props.props;
-  console.log("StockView Render");
-  return (
-    <Row>
-      <Col sm={9}>
-        <div style={{height:"100%", width:"100%"}}>
-          <Chart data={props} />
-        </div>
-      </Col>
-      <Col sm={3}>
-        <div style={{position:'relative', height:"100%", width:"100%"}}>
-          <StockCard data={props} />
-        </div>
-      </Col>
-    </Row>
-  )
+const mapStateToProps = state => {
+  return {
+    data: state.data
+  }
 }
 
-export default StockView;
+const mapDispatchToProps = dispatch => {
+  return {
+    onClick: symbol => {
+      dispatch(addStock(symbol))
+    }
+  }
+}
+
+const StockContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+) (StockView1)
+
+export default StockContainer
