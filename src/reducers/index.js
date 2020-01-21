@@ -1,16 +1,20 @@
-const initialState = {
-  symbol: "TWTR"
-}
+import { SEARCH_STOCK } from '../actions';
 
-const searchFilter = (state = initialState, action) => {
+function  rootReducer(
+  state={
+    symbol: "TWTR",
+    data: []
+  },
+  action
+) {
   switch (action.type) {
-    case 'SEARCH_STOCK':
+    case SEARCH_STOCK:
       return Object.assign({}, state, {
-        symbol:action.symbol
+        symbol: action.symbol
       })
     default:
-      return state
+      return state;
   }
 }
 
-export default searchFilter
+export default rootReducer;
