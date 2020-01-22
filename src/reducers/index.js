@@ -58,21 +58,29 @@ function  rootReducer(
       })
     case REQUEST_STOCK:
       return Object.assign({}, state, {
-        symbol: action.symbol,
         isFetching: true
       })
     case RECEIVE_STOCK:
-      return Object.assign({}, state, {
-        isFetching: false,
-        data: generateData(action.data),
-        volume: generateVolumeData(action.data),
-        isDataLoaded: true
-      })
+      console.log(action);
+      if (action.data.s === "ok") {
+        return Object.assign({}, state, {
+          isFetching: false,
+          symbol:action.symbol,
+          data: generateData(action.data),
+          volume: generateVolumeData(action.data),
+          isDataLoaded: true
+        })
+      }
+      return state;
     case RECEIVE_PROFILE:
-      return Object.assign({}, state, {
-        name: action.name,
-        description: action.description
-      })
+      console.log(action);
+      if (action.name !== undefined) {
+        return Object.assign({}, state, {
+          name: action.name,
+          description: action.description
+        })
+      }
+      return state;
     default:
       return state;
   }
