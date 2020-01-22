@@ -6,44 +6,30 @@ const Search = ({dispatch}) => {
   let input;
   console.log("search called");
 
-  return (
-  <Form inline onSubmit={e => {
-    console.log("form search submit: ", input.value);
+  const handleSubmit = (e) => {
+    console.log("search submit: ", input.value);
     e.preventDefault();
     if (!input.value.trim()) {
       return;
     }
     dispatch(fetchStock(input.value));
     input.value = '';
-  }}>
+  }
+
+  return (
+  <Form inline onSubmit={handleSubmit} >
     <Form.Control
       size="sm"
       type="text"
       placeholder="TWTR"
       className="mr-sm-2"
-      onSubmit={ e => {
-      console.log("form search submit: ", input.value);
-    e.preventDefault();
-    if (!input.value.trim()) {
-      return;
-    }
-    dispatch(fetchStock(input.value));
-    input.value = '';
-  }}
+      onSubmit={handleSubmit}
+      ref={ref => { input = ref }}
     />
-    <input ref={node => (input = node)} />
     <Button
       size="sm"
       variant="outline-success"
-      onClick={e => {
-        console.log("button search submit: ", input.value);
-        e.preventDefault();
-        if (!input.value.trim()) {
-          return;
-        }
-        dispatch(fetchStock(input.value));
-        input.value = '';
-      }}
+      onClick={handleSubmit}
     >Search</Button>
   </Form>
   )
