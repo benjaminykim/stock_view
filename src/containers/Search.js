@@ -11,7 +11,7 @@ const Search = ({dispatch}) => {
     if (!input.value.trim()) {
       return;
     }
-    dispatch(fetchStock(input.value));
+    dispatch(fetchStock(input.value.toUpperCase()));
     input.value = '';
   }
 
