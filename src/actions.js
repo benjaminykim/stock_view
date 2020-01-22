@@ -1,28 +1,30 @@
-export const SEARCH_STOCK = "SEARCH_STOCK";
-export const REQUEST_STOCK = "REQUEST_STOCK";
-export const RECEIVE_STOCK = "RECEIVE_STOCK";
-export const FETCH_STOCK = "FETCH_STOCK";
-export const RECEIVE_PROFILE = "RECEIVE_PROFILE";
-export const ADD_STOCK = "ADD_STOCK";
+import {
+  SEARCH_STOCK,
+  REQUEST_STOCK,
+  RECEIVE_STOCK,
+  FETCH_STOCK,
+  RECEIVE_PROFILE,
+  ADD_STOCK
+} from './constants'
 
 export function searchStock(symbol) {
   console.log(symbol);
   return {
-    type: "SEARCH_STOCK",
+    type: SEARCH_STOCK,
     symbol
   }
 }
 
 function requestStock(symbol) {
   return {
-    type: "REQUEST_STOCK",
+    type: REQUEST_STOCK,
     symbol
   }
 }
 
 function receiveStock(symbol, data) {
   return {
-    type: "RECEIVE_STOCK",
+    type: RECEIVE_STOCK,
     symbol,
     data: data
   }
@@ -31,7 +33,7 @@ function receiveStock(symbol, data) {
 function receiveProfile(data) {
   console.log(data);
   return {
-    type: "RECEIVE_PROFILE",
+    type: RECEIVE_PROFILE,
     description: data.description,
     name: data.name
   }
@@ -39,7 +41,7 @@ function receiveProfile(data) {
 
 export function addStock(symbol) {
   return {
-    type: "ADD_STOCK",
+    type: ADD_STOCK,
     symbol
   }
 }

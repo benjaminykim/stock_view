@@ -2,7 +2,7 @@ import {  SEARCH_STOCK,
           FETCH_STOCK,
           REQUEST_STOCK,
           RECEIVE_STOCK,
-          RECEIVE_PROFILE} from '../actions';
+          RECEIVE_PROFILE} from '../constants';
 
 const initialState = {
   symbol: '',
