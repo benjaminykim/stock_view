@@ -86,6 +86,7 @@ function getOptions(ohlc, volume, ticker) {
 
 const StockView = (props) => {
   console.log("StockView props: ", props);
+  if (props.isDataLoaded) {
   return (
     <Row>
       <Col sm={9}>
@@ -121,23 +122,23 @@ const StockView = (props) => {
                   </tr>
                   <tr>
                     <td>Open </td>
-                    <td>${ props.data[1] }</td>
+                    <td>${ props.data[0][1] }</td>
                   </tr>
                   <tr>
                     <td>Close </td>
-                    <td>${ props.data[2] }</td>
+                    <td>${ props.data[0][4] }</td>
                   </tr>
                   <tr>
                     <td>High </td>
-                    <td>${ props.data[3] }</td>
+                    <td>${ props.data[0][2] }</td>
                   </tr>
                   <tr>
                     <td>Low </td>
-                    <td>${ props.data[4] }</td>
+                    <td>${ props.data[0][3] }</td>
                   </tr>
                   <tr>
                     <td>Volume</td>
-                    <td>{ props.volume[0] }</td>
+                    <td>{ props.volume[0][1] }</td>
                   </tr>
                 </tbody>
               </Table>
@@ -146,7 +147,8 @@ const StockView = (props) => {
         </div>
       </Col>
     </Row>
-  )
+  )}
+  return (<div></div>)
 }
 
 export default StockView;
