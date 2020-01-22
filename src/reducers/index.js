@@ -5,7 +5,7 @@ import {  SEARCH_STOCK,
           RECEIVE_PROFILE} from '../actions';
 
 const initialState = {
-  symbol: "TWTR",
+  symbol: '',
   data: {
     open:[],
     high:[],
@@ -15,8 +15,8 @@ const initialState = {
   volume: [],
   isFetching:false,
   resolution:'',
-  name:'name not implemented',
-  description:'description not implemented',
+  name:'',
+  description:'',
   isDataLoaded:false
 }
 

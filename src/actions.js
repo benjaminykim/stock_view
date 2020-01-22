@@ -62,9 +62,9 @@ function getUrl(endpoint=candleEndpoint, symbol="TWTR", count=200, resolution="D
 }
 
 function fetchProfile(symbol) {
-  console.log("fetch profile called");
   return function (dispatch) {
     var url = getUrl(profileEndpoint, symbol);
+    console.log(url);
     return fetch(url)
       .then(
         response => response.json(),
@@ -75,7 +75,6 @@ function fetchProfile(symbol) {
 }
 
 export function fetchStock(symbol) {
-  console.log("actions: ", symbol);
   return function(dispatch) {
     dispatch(requestStock(symbol));
     fetchProfile(symbol)(dispatch);

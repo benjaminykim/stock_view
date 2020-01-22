@@ -4,7 +4,6 @@ import { Form, Button } from 'react-bootstrap';
 import { fetchStock } from '../actions';
 const Search = ({dispatch}) => {
   let input;
-  console.log("search called");
 
   const handleSubmit = (e) => {
     console.log("search submit: ", input.value);
@@ -21,7 +20,7 @@ const Search = ({dispatch}) => {
     <Form.Control
       size="sm"
       type="text"
-      placeholder="TWTR"
+      placeholder="AAPL"
       className="mr-sm-2"
       onSubmit={handleSubmit}
       ref={ref => { input = ref }}
