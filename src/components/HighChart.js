@@ -67,6 +67,7 @@ function getOptions(ohlc, volume, ticker) {
       data: volume,
       yAxis: 1
     }],
+    backgroundColor: "gray",
     responsive: {
       rules: [{
           condition: {
