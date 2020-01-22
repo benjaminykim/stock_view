@@ -114,7 +114,7 @@ const StockView = (props) => {
               }}>+</Button></div>
             </Card.Header>
             <Card.Body>
-              <Table striped bordered hover variant="dark">
+              <Table striped bordered variant="dark">
                 <tbody>
                   <tr>
                     <td>Ticker</td>
