@@ -1,7 +1,8 @@
 import {  SEARCH_STOCK,
           FETCH_STOCK,
           REQUEST_STOCK,
-          RECEIVE_STOCK} from '../actions';
+          RECEIVE_STOCK,
+          RECEIVE_PROFILE} from '../actions';
 
 const initialState = {
   symbol: "TWTR",
@@ -66,6 +67,11 @@ function  rootReducer(
         data: generateData(action.data),
         volume: generateVolumeData(action.data),
         isDataLoaded: true
+      })
+    case RECEIVE_PROFILE:
+      return Object.assign({}, state, {
+        name: action.name,
+        description: action.description
       })
     default:
       return state;

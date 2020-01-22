@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import StockView1 from '../components/StockView'
+import StockView from '../components/StockView'
 import { addStock } from '../actions'
 
 const mapStateToProps = state => {
@@ -25,6 +25,6 @@ const mapDispatchToProps = dispatch => {
 const StockContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-) (StockView1)
+) (StockView)
 
 export default StockContainer

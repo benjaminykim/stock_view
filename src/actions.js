@@ -2,6 +2,7 @@ export const SEARCH_STOCK = "SEARCH_STOCK";
 export const REQUEST_STOCK = "REQUEST_STOCK";
 export const RECEIVE_STOCK = "RECEIVE_STOCK";
 export const FETCH_STOCK = "FETCH_STOCK";
+export const RECEIVE_PROFILE = "RECEIVE_PROFILE";
 export const ADD_STOCK = "ADD_STOCK";
 
 export function searchStock(symbol) {
@@ -24,6 +25,15 @@ function receiveStock(symbol, data) {
     type: "RECEIVE_STOCK",
     symbol,
     data: data
+  }
+}
+
+function receiveProfile(data) {
+  console.log(data);
+  return {
+    type: "RECEIVE_PROFILE",
+    description: data.description,
+    name: data.name
   }
 }
 
@@ -51,10 +61,24 @@ function getUrl(endpoint=candleEndpoint, symbol="TWTR", count=200, resolution="D
   return (url);
 }
 
+function fetchProfile(symbol) {
+  console.log("fetch profile called");
+  return function (dispatch) {
+    var url = getUrl(profileEndpoint, symbol);
+    return fetch(url)
+      .then(
+        response => response.json(),
+        error => console.log("ERROR: ", error)
+      )
+      .then(data => dispatch(receiveProfile(data)));
+  }
+}
+
 export function fetchStock(symbol) {
   console.log("actions: ", symbol);
   return function(dispatch) {
     dispatch(requestStock(symbol));
+    fetchProfile(symbol)(dispatch);
     var url = getUrl(candleEndpoint, symbol);
     console.log(url);
     return fetch(url)
