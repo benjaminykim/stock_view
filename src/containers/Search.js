@@ -20,7 +20,7 @@ const Search = ({dispatch}) => {
     <Form.Control
       size="sm"
       type="text"
-      placeholder="AAPL"
+      placeholder="stock..."
       className="mr-sm-2"
       onSubmit={handleSubmit}
       ref={ref => { input = ref }}
