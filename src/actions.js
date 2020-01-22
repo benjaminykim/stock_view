@@ -2,7 +2,6 @@ import {
   SEARCH_STOCK,
   REQUEST_STOCK,
   RECEIVE_STOCK,
-  FETCH_STOCK,
   RECEIVE_PROFILE,
   ADD_STOCK
 } from './constants'

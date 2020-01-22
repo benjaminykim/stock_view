@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap'
-import { Button, Card, Table } from 'react-bootstrap'
+import { Button, Card, Accordion } from 'react-bootstrap'
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 
@@ -278,6 +278,10 @@ function getOptions(ohlc, volume, ticker) {
   });
 }
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const StockView = (props) => {
   console.log("StockView props: ", props);
   if (props.isDataLoaded) {
@@ -294,51 +298,39 @@ const StockView = (props) => {
       </Col>
       <Col sm={3}>
         <div style={{position:'relative', height:"100%", width:"100%"}}>
-          <Card text="white" style={{ width: '100%', backgroundColor:color }}>
-            <Card.Header>
-              <div class="float-left">{props.name}</div>
-              <div class="float-right"><Button style={{
-                width: "30px",
-                height: "30px",
-                textAlign: "center",
-                padding: "0px 6px",
-                fontSize: "14px",
-                lineHeight: 1.428571429,
-                borderRadius: "15px"
-              }}>+</Button></div>
+          <Accordion>
+          <Card text="white" border="success" style={{ width: '100%', backgroundColor:color }}>
+            <Card.Header as="h5">
+                {props.symbol}
+                <Button style={{
+                  width: "25px",
+                  height: "25px",
+                  textAlign: "center",
+                  padding: "0px 6px",
+                  fontSize: "14px",
+                  float: "right",
+                  lineHeight: 1.428571429,
+                  borderRadius: "15px"}}>+</Button>
             </Card.Header>
             <Card.Body>
-              <Table striped bordered variant="dark">
-                <tbody>
-                  <tr>
-                    <td>Ticker</td>
-                    <td>{props.symbol}</td>
-                  </tr>
-                  <tr>
-                    <td>Open </td>
-                    <td>${ props.data[0][1] }</td>
-                  </tr>
-                  <tr>
-                    <td>Close </td>
-                    <td>${ props.data[0][4] }</td>
-                  </tr>
-                  <tr>
-                    <td>High </td>
-                    <td>${ props.data[0][2] }</td>
-                  </tr>
-                  <tr>
-                    <td>Low </td>
-                    <td>${ props.data[0][3] }</td>
-                  </tr>
-                  <tr>
-                    <td>Volume</td>
-                    <td>{ props.volume[0][1] }</td>
-                  </tr>
-                </tbody>
-              </Table>
-              <p>{ props.description }</p>
+              <Card.Subtitle className="mb-2 text-muted">
+                ${props.data[0][4]}
+                <br/>
+                {numberWithCommas(props.volume[0][1])}
+              </Card.Subtitle>
             </Card.Body>
           </Card>
+          <Card text="white" border="success" style={{ backgroundColor:color}}>
+            <Card.Header>
+              <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                Description
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body>{props.description}</Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          </Accordion>
         </div>
       </Col>
     </Row>
