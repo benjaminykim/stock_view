@@ -10,7 +10,6 @@ import MarketView from './MarketView'
 
 class App extends React.Component {
   render() {
-    store.dispatch()
     return (
         <Router>
         <Container fluid>

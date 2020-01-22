@@ -1,6 +1,4 @@
 import React from 'react';
-import Chart from './HighChart'
-import StockCard from './StockCard'
 import { Row, Col } from 'react-bootstrap'
 import { Button, Card, Table } from 'react-bootstrap'
 import Highcharts from 'highcharts/highstock';
