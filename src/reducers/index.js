@@ -1,10 +1,12 @@
-import { SEARCH_STOCK, FETCH_STOCK } from '../actions';
+import {  SEARCH_STOCK,
+          FETCH_STOCK,
+          REQUEST_STOCK,
+          RECEIVE_STOCK} from '../actions';
 
 const initialState = {
   symbol: "TWTR",
-  data: [0, 1, 2, 3, 4, 5],
-  volume: [6, 7],
-  isDataLoaded:false,
+  data: [],
+  isFetching:false,
   resolution:'',
   name:'TWITTER INC',
   description:''
@@ -19,8 +21,16 @@ function  rootReducer(
       return Object.assign({}, state, {
         symbol: action.symbol
       })
-    case FETCH_STOCK:
-      
+    case REQUEST_STOCK:
+      return Object.assign({}, state, {
+        symbol: action.symbol,
+        isFetching: true
+      })
+    case RECEIVE_STOCK:
+      return Object.assign({}, state, {
+        isFetching: false,
+        data: action.data
+      })
     default:
       return state;
   }

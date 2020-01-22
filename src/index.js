@@ -4,13 +4,15 @@ import './index.css'
 import App from './components/App1'
 import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
 import thunkMiddleware from 'redux-thunk'
+import { fetchStock } from './actions'
 
-const store = createStore(rootReducer, thunkMiddleware)
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
 store.subscribe(() => console.log(store.getState()))
+store.dispatch(fetchStock("AAPL")).then(() => console.log(store.getState()))
 ReactDOM.render(
   <Provider store={store}>
     <App />

@@ -52,14 +52,16 @@ function getUrl(endpoint=candleEndpoint, symbol="TWTR", count=200, resolution="D
 }
 
 export function fetchStock(symbol) {
+  console.log("actions: ", symbol);
   return function(dispatch) {
     dispatch(requestStock(symbol));
     var url = getUrl(candleEndpoint, symbol);
+    console.log(url);
     return fetch(url)
       .then(
         response => response.json(),
         error => console.log("ERROR: ", error)
       )
-      .then(data => receiveStock(symbol, data));
+      .then(data => dispatch(receiveStock(symbol, data)));
   }
 }
