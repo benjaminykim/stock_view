@@ -5,8 +5,6 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import '../App.css';
 import StockView from '../containers/StockView';
 import Search from '../containers/Search';
-import WatchlistView from './WatchlistView'
-import MarketView from './MarketView'
 
 class App extends React.Component {
   render() {
@@ -19,16 +17,12 @@ class App extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="/stock_view">Home</Nav.Link>
-                <Nav.Link href="/stock_view/watchlist">Watchlist</Nav.Link>
-                <Nav.Link href="/stock_view/markets">Markets</Nav.Link>
               </Nav>
               <Search/>
             </Navbar.Collapse>
           </Navbar>
           <br/>
           <Route exact path="/stock_view" component={StockView} />
-          <Route exact path="/stock_view/watchlist" component={WatchlistView} />
-          <Route exact path="/stock_view/markets" component={MarketView} />
         </Container>
       </Router>
     )
