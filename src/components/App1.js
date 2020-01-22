@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Container from 'react-bootstrap/Container';
-import { Navbar, Nav, Form, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import '../App.css';
-import StockView from '../containers/StockView'
+import StockView from '../containers/StockView';
+import Search from '../containers/Search';
 import WatchlistView from './WatchlistView'
 import MarketView from './MarketView'
 
@@ -22,10 +22,7 @@ class App extends React.Component {
                 <Nav.Link href="/stock_view/watchlist">Watchlist</Nav.Link>
                 <Nav.Link href="/stock_view/markets">Markets</Nav.Link>
               </Nav>
-              <Form inline >
-                <Form.Control size="sm" type="text" placeholder="TWTR" className="mr-sm-2" />
-                <Button size="sm" variant="outline-success">Search</Button>
-              </Form>
+              <Search/>
             </Navbar.Collapse>
           </Navbar>
           <br/>
