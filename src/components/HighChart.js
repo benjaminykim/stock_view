@@ -83,7 +83,7 @@ function getOptions(ohlc, volume, ticker) {
 }
 
 const Chart = (props) => {
-  //props = props.data;
+  console.log('props', props)
   if (props.isDataLoaded) {
   return (<HighchartsReact
     highcharts={Highcharts}

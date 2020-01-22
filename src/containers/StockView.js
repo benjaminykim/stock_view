@@ -3,8 +3,13 @@ import StockView1 from '../components/StockView'
 import { addStock } from '../actions'
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
-    data: state.data
+    symbol: state.symbol,
+    name: state.name,
+    data: state.data,
+    volume: state.volume,
+    isDataLoaded: state.isDataLoaded
   }
 }
 

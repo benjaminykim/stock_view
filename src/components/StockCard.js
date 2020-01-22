@@ -2,8 +2,6 @@ import React from 'react';
 import { Button, Card, Table } from 'react-bootstrap'
 
 const StockCard = (props) => {
-  //props = props.data;
-  //var data = props.data[0];
   return (
     <Card bg="dark" text="white" style={{ width: '100%' }}>
     <Card.Header>

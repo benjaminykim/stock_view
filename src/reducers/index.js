@@ -1,4 +1,4 @@
-import { SEARCH_STOCK } from '../actions';
+import { SEARCH_STOCK, FETCH_STOCK } from '../actions';
 
 const initialState = {
   symbol: "TWTR",
@@ -7,18 +7,20 @@ const initialState = {
   isDataLoaded:false,
   resolution:'',
   name:'TWITTER INC',
-  profile:null
+  description:''
 }
 
 function  rootReducer(
   state=initialState,
-  action
+  action=FETCH_STOCK
 ) {
   switch (action.type) {
     case SEARCH_STOCK:
       return Object.assign({}, state, {
         symbol: action.symbol
       })
+    case FETCH_STOCK:
+      
     default:
       return state;
   }
