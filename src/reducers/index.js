@@ -14,8 +14,8 @@ const initialState = {
   volume: [],
   isFetching:false,
   resolution:'',
-  name:'TWITTER INC',
-  description:'',
+  name:'name not implemented',
+  description:'description not implemented',
   isDataLoaded:false
 }
 

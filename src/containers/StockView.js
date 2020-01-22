@@ -7,6 +7,7 @@ const mapStateToProps = state => {
   return {
     symbol: state.symbol,
     name: state.name,
+    description: state.description,
     data: state.data,
     volume: state.volume,
     isDataLoaded: state.isDataLoaded

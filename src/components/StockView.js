@@ -140,6 +140,10 @@ const StockView = (props) => {
                     <td>Volume</td>
                     <td>{ props.volume[0][1] }</td>
                   </tr>
+                  <tr>
+                    <td>Description</td>
+                    <td>{ props.description }</td>
+                  </tr>
                 </tbody>
               </Table>
             </Card.Body>
