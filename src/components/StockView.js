@@ -283,7 +283,6 @@ function numberWithCommas(x) {
 }
 
 const StockView = (props) => {
-  console.log("StockView props: ", props);
   if (props.isDataLoaded) {
   return (
     <Row>

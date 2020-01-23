@@ -12,7 +12,7 @@ import { fetchStock } from './actions'
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
 store.subscribe(() => console.log(store.getState()))
-store.dispatch(fetchStock("AAPL")).then(() => console.log(store.getState()))
+store.dispatch(fetchStock("AAPL"));
 ReactDOM.render(
   <Provider store={store}>
     <App />

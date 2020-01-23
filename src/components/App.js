@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
         <Router>
         <Container fluid>
-          <Navbar hover style={{backgroundColor:"#3d4147"}} expand="lg" variant="dark" sticky="top">
+          <Navbar hover="true" style={{backgroundColor:"#3d4147"}} expand="lg" variant="dark" sticky="top">
             <Navbar.Brand style={{color:"#20c94d"}}href="/stock_view">stock_view</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

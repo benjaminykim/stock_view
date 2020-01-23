@@ -61,7 +61,6 @@ function  rootReducer(
         isFetching: true
       })
     case RECEIVE_STOCK:
-      console.log(action);
       if (action.data.s === "ok") {
         return Object.assign({}, state, {
           isFetching: false,
@@ -73,7 +72,6 @@ function  rootReducer(
       }
       return state;
     case RECEIVE_PROFILE:
-      console.log(action);
       if (action.name !== undefined) {
         return Object.assign({}, state, {
           name: action.name,
