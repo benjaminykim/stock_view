@@ -15,3 +15,4 @@ export const TWITTER = {
   baseUrl: '',
   token: ''
 }
+export const item_color = "#3d4147";

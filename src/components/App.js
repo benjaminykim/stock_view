@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navbar, Nav, Container } from 'react-bootstrap';
 import '../App.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import StockView from '../containers/StockView';
 import Search from '../containers/Search';
+import WatchList from './WatchList';
 
 class App extends React.Component {
   render() {
@@ -17,12 +18,14 @@ class App extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="/stock_view">Home</Nav.Link>
+                <Nav.Link href="/watchlist">Watchlist</Nav.Link>
               </Nav>
               <Search/>
             </Navbar.Collapse>
           </Navbar>
           <br/>
           <Route exact path="/stock_view" component={StockView} />
+          <Route exact path="/watchlist" component={WatchList} />
         </Container>
       </Router>
     )
