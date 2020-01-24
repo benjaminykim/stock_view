@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { fetchStock } from '../actions/index';
+import store from '../components/Store';
 const Search = ({dispatch}) => {
   let input;
 
@@ -11,6 +12,8 @@ const Search = ({dispatch}) => {
     if (!input.value.trim()) {
       return;
     }
+    if (store.getState().symbol === input.value.toUpperCase())
+      return;
     dispatch(fetchStock(input.value.toUpperCase()));
     input.value = '';
   }
