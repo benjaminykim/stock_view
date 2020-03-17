@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import '../App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import StockView from '../containers/StockView';
+import StockView from '../containers/StockContainer';
 import Search from '../containers/Search';
 import WatchList from './WatchList';
 
